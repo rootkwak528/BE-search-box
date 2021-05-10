@@ -1,0 +1,32 @@
+{% load bootstrap5 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Box</title>
+  {% bootstrap_css %}
+</head>
+<body>
+  <div class="container py-5">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="검색어를 입력하세요." id="search-input">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="search-button">Search</button>
+      </div>
+    </div>
+  </div>
+  {% bootstrap_javascript %}
+
+  <script>
+    const searchInput = document.querySelector('#search-input')
+    const searchButton = document.querySelector('#search-button')
+
+    searchButton.addEventListener('click', event => {
+      console.log(event)
+    })
+  </script>
+</body>
+</html>
