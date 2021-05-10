@@ -27,7 +27,7 @@ def get_movie_data(request, title='dark knight'):
     res = requests.get(url)
 
     movies = {}
-    for idx, movie in enumerate(res.json().get('results')):
+    for idx, movie in enumerate(res.json().get('results')[:10]):
         # pprint(movie)
         poster_id = movie.get('poster_path')
         movies[idx] = {

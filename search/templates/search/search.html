@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <ul id="search-dropdown">
+    <ul id="search-dropdown" class="list-group">
       
     </ul>
   </div>
@@ -49,8 +49,14 @@
           const movie = movies[key]
           const searchDropdownList = document.createElement('li')
           const searchDropdownListImg = document.createElement('img')
+          const searchDropdownListText = document.createElement('span')
 
-          searchDropdownList.innerText = movie.title
+          searchDropdownListImg.src = movie.poster_path
+          searchDropdownListText.innerText = movie.title
+          searchDropdownList.appendChild(searchDropdownListImg)
+          searchDropdownList.appendChild(searchDropdownListText)
+
+          searchDropdownList.setAttribute('class', 'list-group-item')
           searchDropdown.appendChild(searchDropdownList)
         }
       })
