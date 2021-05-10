@@ -30,7 +30,7 @@
     const searchButton = document.querySelector('#search-button')
     const searchDropdown = document.querySelector('#search-dropdown')
 
-    searchButton.addEventListener('click', event => {
+    searchInput.addEventListener('input', event => {
       // console.log(`button clicked! ${searchInput.value}`)
       axios({
         method: 'get',
