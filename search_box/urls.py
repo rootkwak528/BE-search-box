@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from search import views
+from search import views as search_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.search_tmdb, name='search'),
+    path('', search_view.search_tmdb, name='search'),
+    path('get_movie_data/', search_view.get_movie_data, name='get_movie_data'),
 ]

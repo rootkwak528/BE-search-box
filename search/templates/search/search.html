@@ -18,14 +18,29 @@
       </div>
     </div>
   </div>
-  {% bootstrap_javascript %}
 
+  {% bootstrap_javascript %}
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     const searchInput = document.querySelector('#search-input')
     const searchButton = document.querySelector('#search-button')
 
     searchButton.addEventListener('click', event => {
-      console.log(event)
+      console.log(`button clicked! ${searchInput.value}`)
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/get_movie_data/',
+        params: {
+          title: searchInput.value
+        }, 
+        headers: {}
+      })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
     })
   </script>
 </body>
