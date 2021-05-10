@@ -11,14 +11,15 @@
 </head>
 <body>
   <div class="container py-5">
+    <h1 class="mb-3"><b>TMDB 검색창</b></h1>
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="검색어를 입력하세요." id="search-input">
-      <div class="input-group-append">
+      <!-- <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="button" id="search-button">Search</button>
-      </div>
+      </div> -->
     </div>
 
-    <ul id="search-dropdown" class="list-group">
+    <ul id="search-list" class="list-group">
       
     </ul>
   </div>
@@ -27,8 +28,8 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     const searchInput = document.querySelector('#search-input')
-    const searchButton = document.querySelector('#search-button')
-    const searchDropdown = document.querySelector('#search-dropdown')
+    // const searchButton = document.querySelector('#search-button')
+    const searchList = document.querySelector('#search-list')
 
     searchInput.addEventListener('input', event => {
       // console.log(`button clicked! ${searchInput.value}`)
@@ -41,23 +42,26 @@
         headers: {}
       })
       .then(res => {
-        searchDropdown.innerHTML = ''
+        searchList.innerHTML = ''
         
         const movies = res.data
         // console.log(movies)
         for (const key in movies) {
           const movie = movies[key]
-          const searchDropdownList = document.createElement('li')
-          const searchDropdownListImg = document.createElement('img')
-          const searchDropdownListText = document.createElement('span')
 
-          searchDropdownListImg.src = movie.poster_path
-          searchDropdownListText.innerText = movie.title
-          searchDropdownList.appendChild(searchDropdownListImg)
-          searchDropdownList.appendChild(searchDropdownListText)
+          const searchListItem = document.createElement('li')
 
-          searchDropdownList.setAttribute('class', 'list-group-item')
-          searchDropdown.appendChild(searchDropdownList)
+          const searchListItemImg = document.createElement('img')
+          searchListItemImg.src = movie.poster_path
+          searchListItem.appendChild(searchListItemImg)
+          searchListItemImg.setAttribute('class', 'pe-3')
+
+          const searchListItemText = document.createElement('span')
+          searchListItemText.innerText = movie.title
+          searchListItem.appendChild(searchListItemText)
+
+          searchListItem.setAttribute('class', 'list-group-item')
+          searchList.appendChild(searchListItem)
         }
       })
       .catch(err => {
