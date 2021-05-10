@@ -26,6 +26,12 @@ def get_movie_data(request, title='dark knight'):
     url = get_url('search', 'movie', region='KR', language='ko', query=request.GET.get('title'))
     res = requests.get(url)
 
-    movie = res.json()
-    movie_data = {idx: movie for idx, movie in enumerate(movie.get('results'))}
-    return JsonResponse(movie_data)
+    movies = {}
+    for idx, movie in enumerate(res.json().get('results')):
+        # pprint(movie)
+        poster_id = movie.get('poster_path')
+        movies[idx] = {
+            'title': movie.get('title'),
+            'poster_path': f'https://www.themoviedb.org/t/p/w92{poster_id}'
+        }
+    return JsonResponse(movies)

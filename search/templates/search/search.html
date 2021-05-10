@@ -46,8 +46,9 @@
         const movies = res.data
         // console.log(movies)
         for (const key in movies) {
-          const searchDropdownList = document.createElement('li')
           const movie = movies[key]
+          const searchDropdownList = document.createElement('li')
+          const searchDropdownListImg = document.createElement('img')
 
           searchDropdownList.innerText = movie.title
           searchDropdown.appendChild(searchDropdownList)
