@@ -27,6 +27,5 @@ def get_movie_data(request, title='dark knight'):
     res = requests.get(url)
 
     movie = res.json()
-    movie_data = {'data': movie.get('results')}
-    pprint.pprint(movie_data)
+    movie_data = {idx: movie for idx, movie in enumerate(movie.get('results'))}
     return JsonResponse(movie_data)

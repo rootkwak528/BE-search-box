@@ -17,6 +17,10 @@
         <button class="btn btn-outline-secondary" type="button" id="search-button">Search</button>
       </div>
     </div>
+
+    <ul id="search-dropdown">
+      
+    </ul>
   </div>
 
   {% bootstrap_javascript %}
@@ -24,9 +28,10 @@
   <script>
     const searchInput = document.querySelector('#search-input')
     const searchButton = document.querySelector('#search-button')
+    const searchDropdown = document.querySelector('#search-dropdown')
 
     searchButton.addEventListener('click', event => {
-      console.log(`button clicked! ${searchInput.value}`)
+      // console.log(`button clicked! ${searchInput.value}`)
       axios({
         method: 'get',
         url: 'http://127.0.0.1:8000/get_movie_data/',
@@ -36,7 +41,17 @@
         headers: {}
       })
       .then(res => {
-        console.log(res)
+        searchDropdown.innerHTML = ''
+        
+        const movies = res.data
+        // console.log(movies)
+        for (const key in movies) {
+          const searchDropdownList = document.createElement('li')
+          const movie = movies[key]
+
+          searchDropdownList.innerText = movie.title
+          searchDropdown.appendChild(searchDropdownList)
+        }
       })
       .catch(err => {
         console.log(err)
