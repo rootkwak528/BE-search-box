@@ -1,4 +1,4 @@
-# 실시간 검색 박스
+# 실시간 TMDB 검색창
 
 > written by Root_Kwak on May, 2021
 >
